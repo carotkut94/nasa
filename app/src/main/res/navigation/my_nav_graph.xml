@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav_graph.xml"
+    app:startDestination="@id/nasaListFragment">
+
+    <fragment
+        android:id="@+id/nasaListFragment"
+        tools:layout="@layout/nasa_list_fragment"
+        android:name="com.death.nasa.ui.home.list.NasaListFragment"
+        android:label="Nasa" >
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            android:id="@+id/move_to_detail"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        tools:layout="@layout/fragment_detail"
+        android:name="com.death.nasa.ui.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="nasaImage"
+            app:argType="com.death.nasa.data.model.NasaImage" />
+        <action
+            android:id="@+id/action_detailFragment_to_infoDialogBottomSheet"
+            app:destination="@id/infoDialogBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/infoDialogBottomSheet"
+        tools:layout="@layout/fragment_detail"
+        android:name="com.death.nasa.ui.detail.InfoDialogBottomSheet"
+        android:label="Details" >
+        <argument
+            android:name="explaination"
+            app:argType="string" />
+    </dialog>
+
+
+</navigation>
